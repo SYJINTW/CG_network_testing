@@ -5,6 +5,7 @@
 # https://shengyu7697.github.io/python-udp-socket/
 
 import socket
+import time
 
 HOST = '0.0.0.0'
 PORT = 7000
@@ -18,6 +19,6 @@ print('wait for connection...')
 while True:
     indata, addr = s.recvfrom(1024)
     print('recvfrom ' + str(addr) + ': ' + indata.decode())
-
-    outdata = 'echo ' + indata.decode()
+    sendingTime = time.time()
+    outdata = 'echo ' + indata.decode() + f', resentTime: {sendingTime}'
     s.sendto(outdata.encode(), addr)
